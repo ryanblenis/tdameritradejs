@@ -378,7 +378,7 @@ class TDStreamer {
      */
     subsChartOptions(symbols, fields) {
         return this.subscribe({
-            service: SERVICES.CHART_FUTURES,
+            service: SERVICES.CHART_OPTIONS,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
                 fields: fields
@@ -396,7 +396,7 @@ class TDStreamer {
      */
     unsubsChartOptions(symbols) {
         return this.unsubscribe({
-            service: SERVICES.CHART_FUTURES,
+            service: SERVICES.CHART_OPTIONS,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
             },

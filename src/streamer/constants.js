@@ -87,6 +87,8 @@ const SERVICES = Object.freeze({
     CHART_FUTURES: 'CHART_FUTURES',
     /** Chart history for Futures */
     CHART_HISTORY_FUTURES: 'CHART_HISTORY_FUTURES',
+    /** Chart candle for options */
+    CHART_OPTIONS: 'CHART_OPTIONS',
     /** Level 1 Equity */
     QUOTE: 'QUOTE',
     /** Level 1 Equity Futures */
