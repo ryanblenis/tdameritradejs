@@ -57,7 +57,7 @@ function authorize() {
         server.listen(Number(urlObj.port) || 8443, urlObj.hostname, () => {
             this._emitter.emit(
                 'login',
-                `https://auth.tdameritrade.com/auth?response_type=code&redirect_uri=${this.config.redirectUri}&client_id=${this.config.apiKey}`
+                `https://api.schwabapi.com/v1/oauth/authorize?client_id=${this.config.apiKey}&redirect_uri=${this.config.redirectUri}`
             )
         })
     }) // Promise()

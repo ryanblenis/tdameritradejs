@@ -18,7 +18,7 @@
  * td.getMarketHours(['EQUITY', 'FUTURE'], '2021-01-21')
  */
 function getMarketHours(markets, date) {
-    return this.axios.get('/marketdata/hours', {
+    return this.axios.get('/marketdata/v1/hours', {
         params: {
             markets: [].concat(markets).join(','),
             date,
@@ -62,9 +62,9 @@ function getMovers(index, direction, change) {
  * const data = await td.getQuotes(['ABC', 'XYZ'])
  */
 function getQuotes(symbols) {
-    return this.axios.get('/marketdata/quotes', {
+    return this.axios.get('/marketdata/v1/quotes', {
         params: {
-            symbol: [].concat(symbols).join(','),
+            symbols: [].concat(symbols).join(','),
             apikey: this.config.apiKey,
         },
     })
@@ -82,7 +82,7 @@ function getQuotes(symbols) {
  * const data = await td.getQuote('XYZ')
  */
 function getQuote(symbol) {
-    return this.axios.get(`/marketdata/${symbol}/quotes`, {
+    return this.axios.get(`/marketdata/v1/${symbol}/quotes`, {
         params: {
             apikey: this.config.apiKey,
         },
@@ -130,7 +130,7 @@ function getQuote(symbol) {
  * })
  */
 function getPriceHistory(symbol, params) {
-    return this.axios.get(`/marketdata/${symbol}/pricehistory`, {
+    return this.axios.get(`/marketdata/v1/${symbol}/pricehistory`, {
         params: Object.assign({}, params, { apikey: this.config.apiKey }),
     })
 } // getPriceHistory()
@@ -179,7 +179,7 @@ function getPriceHistory(symbol, params) {
  * @returns {Promise<any>} The option chain
  */
 function getOptionChain(symbol, params) {
-    return this.axios.get('/marketdata/chains', {
+    return this.axios.get('/marketdata/v1/chains', {
         params: Object.assign({}, params, { symbol, apikey: this.config.apiKey }),
     })
 } // getOptionChain()
@@ -205,7 +205,7 @@ function getOptionChain(symbol, params) {
  * const res = await td.searchInstruments('XYZ', 'symbol-search')
  */
 function searchInstruments(symbol, projection) {
-    return this.axios.get('/instruments', {
+    return this.axios.get('/v1/instruments', {
         params: {
             symbol,
             projection,
@@ -226,7 +226,7 @@ function searchInstruments(symbol, projection) {
  * const instr = await td.getInstrument('03074K100')
  */
 function getInstrument(cusip) {
-    return this.axios.get(`/instruments/${cusip}`, {
+    return this.axios.get(`/v1/instruments/${cusip}`, {
         params: {
             apikey: this.config.apiKey,
         }

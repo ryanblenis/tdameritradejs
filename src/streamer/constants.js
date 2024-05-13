@@ -24,7 +24,7 @@ const EVENT = {
     CHART: 'chart',
     // CHART_EQUITY: 'chart_equity',
     // CHART_FUTURES: 'chart_futures',
-    // CHART_OPTIONS: 'chart_options',
+    CHART_OPTIONS: 'chart_options',
     NEWS_HEADLINE: 'news_headline',
     TIMESALE: 'timesale',
     // TIMESALE_EQUITY: 'timesale_equity',
@@ -91,6 +91,7 @@ const SERVICES = {
     FUTURES_OPTIONS_BOOK: 'FUTURES_OPTIONS_BOOK', // Level Two book
     CHART_EQUITY: 'CHART_EQUITY', // Chart candle for Equity and Index.
     CHART_FUTURES: 'CHART_FUTURES', // Chart candle for Futures and Futures OPtions
+    CHART_OPTIONS: 'CHART_OPTIONS',
     CHART_HISTORY_FUTURES: 'CHART_HISTORY_FUTURES', // Chart history for Futures
     QUOTE: 'QUOTE', // Level 1 Equity
     LEVELONE_FUTURES: 'LEVELONE_FUTURES', // Level 1 Equity Futures

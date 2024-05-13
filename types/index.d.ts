@@ -265,7 +265,7 @@ export class TDAmeritrade {
     getQuotes(symbols: string|Array<string>): Promise<any>;
     /**
      * Get quote data for a specified symbol.
-     * @param symbol The ticker symbol
+     * @param symbols The ticker symbol
      * @returns The quote data
      * @example
      * const data = await td.getQuote('XYZ')

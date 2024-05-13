@@ -18,7 +18,7 @@
  * @type {Config}
  */
 const config = {
-    baseURL: 'https://api.tdameritrade.com/v1',
+    baseURL: 'https://api.schwabapi.com',
     refreshAndRetry: true,
     returnFullResponse: false,
     redirectUri: 'https://localhost:8443',

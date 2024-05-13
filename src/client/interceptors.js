@@ -32,7 +32,7 @@ function appendAccessToken(client) {
  */
 function updateConfigOnNewToken(client) {
     client.axios.interceptors.response.use(response => {
-        if (response.config.url === '/oauth2/token') {
+        if (response.config.url === '/v1/oauth/token') {
             const token = parseToken(response.data)
             Object.assign(client.config, token)
             client._emitter.emit('token', token)
@@ -55,7 +55,7 @@ function refreshAndRetry(client) {
         const condition = client.config.refreshAndRetry
             && get(error, 'response.status') === 401
             && ! originalRequest._retry
-            && originalRequest.url !== '/oauth2/token'
+            && originalRequest.url !== '/v1/oauth/token'
 
         if (condition) {
             originalRequest._retry = true

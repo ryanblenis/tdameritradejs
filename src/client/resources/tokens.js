@@ -21,7 +21,7 @@ function getAccessToken(authCode) {
 
     delete this.config.accessToken
 
-    return this.axios.post('/oauth2/token', params)
+    return this.axios.post('/v1/oauth/token', params)
 } // getAccessToken()
 
 /**
@@ -44,7 +44,7 @@ function refreshAccessToken(refreshToken) {
 
     delete this.config.accessToken
 
-    return this.axios.post('/oauth2/token', params)
+    return this.axios.post('/v1/oauth/token', params)
 } // refreshAccessToken()
 
 /**

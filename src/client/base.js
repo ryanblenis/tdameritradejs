@@ -4,7 +4,7 @@ const axios = require('axios').default
 const defaults = require('./config')
 const EventEmitter = require('eventemitter3')
 const interceptors = require('./interceptors')
-const apiKeySuffix = '@AMER.OAUTHAP'
+const apiKeySuffix = ''//'@AMER.OAUTHAP'
 
 const tokens = require('./resources/tokens')
 
