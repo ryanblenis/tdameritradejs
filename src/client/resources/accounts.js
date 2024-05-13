@@ -12,7 +12,7 @@
  * const accounts = await td.getAccounts()
  */
 function getAccounts(fields) {
-    return this.axios.get('/accounts', {
+    return this.axios.get('/trader/v1/accounts', {
         params: {
             fields: [].concat(fields || []).join(',')
         }
@@ -35,7 +35,7 @@ function getAccounts(fields) {
  * const acctInfo = await td.getAccount('45678')
  */
 function getAccount(accountId, fields) {
-    return this.axios.get(`/accounts/${accountId}`, {
+    return this.axios.get(`/trader/v1/accounts/${accountId}`, {
         params: {
             fields: [].concat(fields || []).join(',')
         }
@@ -54,7 +54,7 @@ function getAccount(accountId, fields) {
  * const acctInfo = await td.getPositions('45678')
  */
 function getPositions(accountId) {
-    return this.axios.get(`/accounts/${accountId}`, {
+    return this.axios.get(`/trader/v1/accounts/${accountId}`, {
         params: {
             fields: 'positions'
         }
@@ -73,7 +73,7 @@ function getPositions(accountId) {
  * const prefs = await td.getPreferences('45678')
  */
 function getPreferences(accountId) {
-    return this.axios.get(`/accounts/${accountId}/preferences`)
+    return this.axios.get(`/trader/v1/accounts/${accountId}/preferences`)
 } // getPreferences()
 
 /**
@@ -102,7 +102,7 @@ function getPreferences(accountId) {
  * @returns {Promise<any>} Success
  */
 function updatePreferences(accountId, preferences) {
-    return this.axios.put(`/accounts/${accountId}/preferences`, preferences)
+    return this.axios.put(`/trader/v1/accounts/${accountId}/preferences`, preferences)
 } // updatePreferences()
 
 /**
@@ -117,7 +117,7 @@ function updatePreferences(accountId, preferences) {
  * const subsKeys = await td.getStreamerSubscriptionKeys('45678')
  */
 function getStreamerSubscriptionKeys(accountIds) {
-    return this.axios.get('/userprincipals/streamersubscriptionkeys', {
+    return this.axios.get('/trader/v1/userprincipals/streamersubscriptionkeys', {
         params: {
             accountIds: [].concat(accountIds || []).join(',')
         }
