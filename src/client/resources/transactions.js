@@ -13,7 +13,7 @@
  * const transaction = await td.getTransaction('45678', '98754')
  */
 function getTransaction(accountId, transactionId) {
-    return this.axios.get(`/accounts/${accountId}/transactions/${transactionId}`)
+    return this.axios.get(`/trader/v1/accounts/${accountId}/transactions/${transactionId}`)
 } // getTransaction()
 
 /**
@@ -44,7 +44,7 @@ function getTransaction(accountId, transactionId) {
  * })
  */
 function getTransactions(accountId, params) {
-    return this.axios.get(`/accounts/${accountId}/transactions`, { params })
+    return this.axios.get(`/trader/v1/accounts/${accountId}/transactions`, { params })
 } // getTransactions()
 
 module.exports = {
