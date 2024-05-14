@@ -44,6 +44,9 @@ function getTransaction(accountId, transactionId) {
  * })
  */
 function getTransactions(accountId, params) {
+    if (params.types == '') {
+        params.types = 'TRADE'
+    }
     return this.axios.get(`/trader/v1/accounts/${accountId}/transactions`, { params })
 } // getTransactions()
 

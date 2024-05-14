@@ -20,6 +20,21 @@ function getAccounts(fields) {
 } // getAccounts()
 
 /**
+ * Get account balances, positions, and orders for all linked accounts.
+ *
+ * @instance
+ * @memberof TDAmeritrade
+ * @param {}
+ * @returns {Promise<any>} List of all account numbers
+ *
+ * @example
+ * const accounts = await td.getAccountNumbers()
+ */
+function getAccountNumbers(fields) {
+    return this.axios.get('/trader/v1/accounts/accountNumbers')
+} // getAccountNumbers()
+
+/**
  * @typedef {'positions'|'orders'} AccountFields
  */
 /**
@@ -143,15 +158,12 @@ function getStreamerSubscriptionKeys(accountIds) {
  * const usrPrinc = await td.getUserPrincipals(['streamerSubscriptionKeys', 'streamerConnectionInfo'])
  */
 function getUserPrincipals(fields) {
-    return this.axios.get('/userprincipals', {
-        params: {
-            fields: [].concat(fields || []).join(',')
-        }
-    })
+    return this.axios.get('/trader/v1/userPreference')
 } // getUserPrincipals()
 
 module.exports = {
     getAccounts,
+    getAccountNumbers,
     getAccount,
     getPositions,
     getPreferences,

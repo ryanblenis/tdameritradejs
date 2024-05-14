@@ -38,13 +38,17 @@ function getAccessToken(authCode) {
 function refreshAccessToken(refreshToken) {
     const params = new URLSearchParams()
     params.append('grant_type', 'refresh_token')
-    params.append('access_type', this.config.accessType || 'offline')
-    params.append('client_id', this.config.apiKey)
+    //params.append('access_type', this.config.accessType || 'offline')
+    //params.append('client_id', this.config.apiKey)
     params.append('refresh_token', refreshToken || this.config.refreshToken)
 
     delete this.config.accessToken
-
-    return this.axios.post('/v1/oauth/token', params)
+    
+    return this.axios.post('/v1/oauth/token', params, {
+        headers: {
+            Authorization: 'Basic '+ Buffer.from(`${this.config.apiKey}:${this.config.apiSecret}`).toString('base64')
+        }
+    })
 } // refreshAccessToken()
 
 /**

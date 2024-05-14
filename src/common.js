@@ -38,7 +38,7 @@ function streamer() {
         'streamerConnectionInfo',
     ]).then(res => {
         const userPrincipals = this.config.returnFullResponse ? get(res, 'data') : res
-        const instance = new TDStreamer(userPrincipals)
+        const instance = new TDStreamer(userPrincipals, this.config)
         return instance
     })
 } // streamer()

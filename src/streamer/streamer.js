@@ -5,6 +5,7 @@ const debug = require('debug')('ameritrade:streamer') // eslint-disable-line no-
 const EventEmitter = require('eventemitter3')
 const WebSocket = require('isomorphic-ws')
 const cuid = require('cuid')
+var cuid2 = 0
 
 const { STATE, EVENT, ERROR, COMMANDS, SERVICES, FIELDS } = require('./constants')
 const transform = require('./transforms')
@@ -34,8 +35,9 @@ class TDStreamer {
     /**
      * @param {object} userPrincipals User principals object
      */
-    constructor(userPrincipals) {
+    constructor(userPrincipals, config) {
         this.userPrincipals = userPrincipals
+        this.config = config
         this[emitter] = new EventEmitter()
 
         // subscribe to all state changes
@@ -57,7 +59,7 @@ class TDStreamer {
         })
 
         // login
-        this[emitter].on(STATE.CONNECTED, () => this.sendRequest(login(this.userPrincipals)))
+        this[emitter].on(STATE.CONNECTED, () => this.sendRequest(login(this.userPrincipals, this.config)))
 
         // handle incoming messages
         this[emitter].on(EVENT.MESSAGE, data => handleMessage(this[emitter], data))
@@ -153,7 +155,7 @@ class TDStreamer {
      */
     connect() {
         this[emitter].emit(STATE.CONNECTING)
-        this[socket] = new WebSocket(`wss://${this.userPrincipals.streamerInfo.streamerSocketUrl}/ws`)
+        this[socket] = new WebSocket(`${this.userPrincipals.streamerInfo[0].streamerSocketUrl}`)
         this[socket].onopen = () => this[emitter].emit(STATE.CONNECTED)
         this[socket].onmessage = message => this[emitter].emit(EVENT.MESSAGE, message.data)
         this[socket].onerror = () => this[emitter].emit(ERROR.CONNECTION_REFUSED)
@@ -196,7 +198,7 @@ class TDStreamer {
         const data = { requests: [] }
 
         data.requests = [].concat(requests).map(request => Object.assign({}, {
-            requestid: cuid(),
+            requestid: cuid2++,
             account: this.userPrincipals.accounts[0].accountId,
             source: this.userPrincipals.streamerInfo.appId,
         }, request))
@@ -494,9 +496,11 @@ class TDStreamer {
      * @param {Array<'symbol'|'tradeTime'|'lastPrice'|'lastSize'|'lastSequence'>} [fields] Fields to include (default all)
      * @returns {object[]} The request objects sent to the server
      */
-    subsTimesaleFutures(symbols, fields) {
+    subsTimesaleFutures(symbols, fields, si) {
         return this.subscribe({
             service: SERVICES.TIMESALE_FUTURES,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
                 fields: fields
@@ -883,14 +887,17 @@ function handleData(emitter, data) {
  * @param {object} userPrincipals User principals object
  * @returns {object} Login request
  */
-function login(userPrincipals) {
+function login(userPrincipals, config) {
     return {
         service: SERVICES.ADMIN,
+        "requestid": cuid2++,
         command: COMMANDS.LOGIN,
+        "SchwabClientCustomerId": userPrincipals.streamerInfo[0].schwabClientCustomerId,
+        "SchwabClientCorrelId": userPrincipals.streamerInfo[0].schwabClientCorrelId,
         parameters: {
-            credential: credential(userPrincipals),
-            token: userPrincipals.streamerInfo.token,
-            version: '1.0',
+            "Authorization": config.accessToken,
+            "SchwabClientChannel": userPrincipals.streamerInfo[0].schwabClientChannel,
+            "SchwabClientFunctionId": userPrincipals.streamerInfo[0].schwabClientFunctionId,
         }
     }
 } // login()

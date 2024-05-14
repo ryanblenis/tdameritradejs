@@ -25,6 +25,7 @@ Client.prototype.getOptionChain = market.getOptionChain
 Client.prototype.searchInstruments = market.searchInstruments
 Client.prototype.getInstrument = market.getInstrument
 Client.prototype.getAccounts = accounts.getAccounts
+Client.prototype.getAccountNumbers = accounts.getAccountNumbers
 Client.prototype.getAccount = accounts.getAccount
 Client.prototype.getPositions = accounts.getPositions
 Client.prototype.getPreferences = accounts.getPreferences
