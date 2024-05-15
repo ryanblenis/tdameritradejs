@@ -18,7 +18,7 @@
  * td.getMarketHours(['EQUITY', 'FUTURE'], '2021-01-21')
  */
 function getMarketHours(markets, date) {
-    return this.axios.get('/marketdata/v1/hours', {
+    return this.axios.get('/marketdata/v1/markets', {
         params: {
             markets: [].concat(markets).join(','),
             date,
