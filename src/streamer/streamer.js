@@ -215,7 +215,7 @@ class TDStreamer {
     sendRequest(requests) {
         const data = this.createRequest(requests)
 
-        debug('Sending request: %j', data)
+        //debug('Sending request: %j', data)
 
         this.send(data)
 
@@ -282,6 +282,8 @@ class TDStreamer {
         return this.sendRequest({
             service: SERVICES.ADMIN,
             command: COMMANDS.QOS,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 qoslevel: FIELDS.QOS[level]
             },
@@ -637,6 +639,8 @@ class TDStreamer {
     subsLevelOneEquity(symbols, fields) {
         return this.subscribe({
             service: SERVICES.QUOTE,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
                 fields: fields
@@ -677,6 +681,8 @@ class TDStreamer {
     subsLevelOneFutures(symbols, fields) {
         return this.subscribe({
             service: SERVICES.LEVELONE_FUTURES,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
                 fields: fields
@@ -890,7 +896,7 @@ function handleData(emitter, data) {
 function login(userPrincipals, config) {
     return {
         service: SERVICES.ADMIN,
-        "requestid": cuid2++,
+        "requestid": cuid2,
         command: COMMANDS.LOGIN,
         "SchwabClientCustomerId": userPrincipals.streamerInfo[0].schwabClientCustomerId,
         "SchwabClientCorrelId": userPrincipals.streamerInfo[0].schwabClientCorrelId,

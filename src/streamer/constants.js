@@ -93,7 +93,7 @@ const SERVICES = {
     CHART_FUTURES: 'CHART_FUTURES', // Chart candle for Futures and Futures OPtions
     CHART_OPTIONS: 'CHART_OPTIONS',
     CHART_HISTORY_FUTURES: 'CHART_HISTORY_FUTURES', // Chart history for Futures
-    QUOTE: 'QUOTE', // Level 1 Equity
+    QUOTE: 'LEVELONE_EQUITIES',// 'QUOTE' // Level 1 Equity
     LEVELONE_FUTURES: 'LEVELONE_FUTURES', // Level 1 Equity Futures
     LEVELONE_FOREX: 'LEVELONE_FOREX', // Level 1 Forex
     LEVELONE_FUTURES_OPTIONS: 'LEVELONE_FUTURES_OPTIONS', // Level 1 Futures Options
