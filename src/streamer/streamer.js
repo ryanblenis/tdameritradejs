@@ -299,6 +299,8 @@ class TDStreamer {
     subsAccountActivity(fields) {
         return this.subscribe({
             service: SERVICES.ACCT_ACTIVITY,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 keys: this.userPrincipals.streamerSubscriptionKeys.keys[0].key,
                 fields: fields
@@ -329,6 +331,8 @@ class TDStreamer {
     subsChartEquity(symbols, fields) {
         return this.subscribe({
             service: SERVICES.CHART_EQUITY,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
                 fields: fields
@@ -363,6 +367,8 @@ class TDStreamer {
     subsChartFutures(symbols, fields) {
         return this.subscribe({
             service: SERVICES.CHART_FUTURES,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
                 fields: fields
@@ -397,6 +403,8 @@ class TDStreamer {
     subsChartOptions(symbols, fields) {
         return this.subscribe({
             service: SERVICES.CHART_FUTURES,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
                 fields: fields
@@ -537,6 +545,8 @@ class TDStreamer {
     subsTimesaleOptions(symbols, fields) {
         return this.subscribe({
             service: SERVICES.TIMESALE_OPTIONS,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             parameters: {
                 keys: [].concat(symbols).join(',').toUpperCase(),
                 fields: fields
@@ -615,6 +625,8 @@ class TDStreamer {
         return this.sendRequest({
             requestid: Math.floor(Math.random() * 2000000000).toString(),
             service: SERVICES.CHART_HISTORY_FUTURES,
+            "SchwabClientCustomerId": this.userPrincipals.streamerInfo[0].schwabClientCustomerId,
+            "SchwabClientCorrelId": this.userPrincipals.streamerInfo[0].schwabClientCorrelId,
             command: COMMANDS.GET,
             parameters: Object.assign({}, options, {
                 symbol: [].concat(symbols).join(',').toUpperCase()
