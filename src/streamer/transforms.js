@@ -52,11 +52,11 @@ function chartEquityNormalized(data) {
                 key: entry.key,
                 seq: entry.seq,
                 chartTime: entry[7],
-                openPrice: entry[1],
-                highPrice: entry[2],
-                lowPrice: entry[3],
-                closePrice: entry[4],
-                volume: entry[5],
+                openPrice: entry[2],
+                highPrice: entry[3],
+                lowPrice: entry[4],
+                closePrice: entry[5],
+                volume: entry[6],
             }
         })
     })
